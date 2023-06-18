@@ -1,32 +1,19 @@
-    const iframe = document.querySelector('#vimeo-player');
-    const player = new Vimeo.Player(iframe);
-
-    // player.on('play', function() {
-    //     console.log('played the video!');
-    // });
-
-    // player.getVideoTitle().then(function(title) {
-    //     console.log('title:', title);
-    // });
-
-
-// import Player from '@vimeo/player';
-
-// const iframe = document.querySelector('#vimeo-player');
-  
-// const player = new Player('iframe', {
-
+import Player from "@vimeo/player";
     
-// });
 
-    // const player = new Vimeo.Player(iframe);
+const iframe = document.querySelector('#vimeo-player');
 
-// const onPlay = function(data) {
-//    player
-// };
+const player = new Player(iframe);
+player.on('timeupdate', onPlay);
 
-//     player.on('play', onPlay);
 
-    // player.getVideoTitle().then(function(title) {
-    //     console.log('title:', title);
-    // });
+
+function onPlay(date) { 
+    localStorage.setItem("videoplayer-current-time", date.seconds)
+}
+
+const item = localStorage.getItem("videoplayer-current-time"); 
+
+player.setCurrentTime(item);
+
+
