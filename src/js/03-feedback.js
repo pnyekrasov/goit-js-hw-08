@@ -1,9 +1,19 @@
+import throttle from "lodash.throttle"; 
+
 const formEl = document.querySelector('.feedback-form');
-console.log(formEl);
-const dataDisplayEl = {`email: ${ formEl.email.value },
-    message: ${ formEl.message.value }`,
-};
-console.log(dataDisplayEl);
+
+const emailEl = document.querySelector('input');
+
+const messageEl = document.querySelector('textarea');
+ 
+formEl.addEventListener('input', throttle(handleWriteReport, 500));
+    
+    const currentReport = {
+    email: emailEl.value,
+    message: messageEl.value
+    };
+
+function handleWriteReport() {localStorage.setItem("feedback-form-state", JSON.stringify(currentReport))};
 
 // formEl.addEventListener('submit', handleDisplayReport);
 
@@ -12,7 +22,7 @@ console.log(dataDisplayEl);
 //   const {
 //     elements: { email, message }
 //   } = e.target;
-
+  
 
 //   if (email.value === "" || message.value === "") {
 //       alert('Attention! Fill in all fields before "Submit", please ;)');
