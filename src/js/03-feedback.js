@@ -16,8 +16,8 @@ function handleWriteReport(e) {
         };
         email.value = JSON.parse(localStorage.getItem("feedback-form-state")).email;
         message.value = JSON.parse(localStorage.getItem("feedback-form-state")).message;
-        console.log(formData);
         localStorage.removeItem("feedback-form-state");
+        console.log(formData);        
         formEl.reset();
     };
 };
