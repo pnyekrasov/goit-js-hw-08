@@ -1,36 +1,36 @@
 import throttle from "lodash.throttle"; 
-
 const formEl = document.querySelector('.feedback-form');
-
-// const emailEl = document.querySelector('input');
-
-// const messageEl = document.querySelector('textarea');
- 
+const emailEl = document.querySelector('input');
+const messageEl = document.querySelector('textarea'); 
 formEl.addEventListener('input', throttle(handleWriteReport, 500));
-
-
 function handleWriteReport(e) {
     e.preventDefault();
-    const {
-        elements: { email, message }
-    } = e.currentTarget;
+//   const {
+//     elements: { email, message }
+//   } = e.currentTarget;
+  
+    //     const currentReport = {
+    //     email: email.value,
+    //     message: message.value
+    // };
 
-    const currentReport = {
-        email: email.value,
-        message: message.value
+    let currentReport = {
+        email: emailEl.value,
+        message: messageEl.value
     };
+    currentReport = JSON.parse(localStorage.getItem("feedback-form-state")) ?? '';
+    localStorage.setItem("feedback-form-state", JSON.stringify(currentReport));
 
-    localStorage.setItem("feedback-form-state", JSON.stringify(currentReport))
+    // formEl.addEventListener('submit', handleDisplayReport);
 
-    formEl.addEventListener('submit', handleDisplayReport);
-
-    function handleDisplayReport(e) {
-        if (email.value === "" || message.value === "") {
-            alert('Attention! Fill in all fields before "Submit", please ;)');
-            return;
-        };
-        console.log(localStorage.getItem("feedback-form-state"))
-    };
+    // function handleDisplayReport(e) {
+    //     console.log(JSON.parse(localStorage.getItem("feedback-form-state")));
+    //     // if (email.value === "" || message.value === "") {
+    //     //     alert('Attention! Fill in all fields before "Submit", please ;)');
+    //     //     return;
+    //     // }; else {
+    //     // console.log(JSON.parse(localStorage.getItem("feedback-form-state")))};
+    // };
 };
 
 
