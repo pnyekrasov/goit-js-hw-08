@@ -4,7 +4,14 @@ const formData = {};
 formEl.addEventListener('input', throttle(handleWriteReport, 500));
 function handleWriteReport(e) {
     formData[e.target.name] = e.target.value;
-    localStorage.setItem("feedback-form-state", JSON.stringify(formData));  
+    localStorage.setItem("feedback-form-state", JSON.stringify(formData));
+}; 
+function recordFormData() {
+   email.value = JSON.parse(localStorage.getItem("feedback-form-state")).email;
+    message.value = JSON.parse(localStorage.getItem("feedback-form-state")).message;
+    console.log(formData)
+};
+
     formEl.addEventListener('submit', handleDisplayReport);
     function handleDisplayReport(e) {
         const {
@@ -14,10 +21,9 @@ function handleWriteReport(e) {
             alert('Attention! Fill in all fields before "Submit", please ;)');
             return;
         };
-        email.value = JSON.parse(localStorage.getItem("feedback-form-state")).email;
-        message.value = JSON.parse(localStorage.getItem("feedback-form-state")).message;
+       recordFormData(); 
         localStorage.removeItem("feedback-form-state");
         console.log(formData);        
         formEl.reset();
     };
-};
+
