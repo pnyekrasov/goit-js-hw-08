@@ -6,14 +6,14 @@ function handleWriteReport(e) {
     formData[e.target.name] = e.target.value;
     localStorage.setItem("feedback-form-state", JSON.stringify(formData));
 }; 
+
 function recordFormData() {
    email.value = JSON.parse(localStorage.getItem("feedback-form-state")).email;
     message.value = JSON.parse(localStorage.getItem("feedback-form-state")).message;
-    console.log(formData)
 };
 
     formEl.addEventListener('submit', handleDisplayReport);
-    function handleDisplayReport(e) {
+    function handleDisplayReport() {
         const {
             elements: { email, message }
         } = formEl;        
