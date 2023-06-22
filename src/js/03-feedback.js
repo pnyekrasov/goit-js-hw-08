@@ -15,8 +15,6 @@ function handleWriteReport(e) {
     if (saveData) {
     email.value = saveData.email || '';
     message.value = saveData.message || '';  
-    }
-;
 
     formEl.addEventListener('submit', handleDisplayReport);
     function handleDisplayReport(e) {
