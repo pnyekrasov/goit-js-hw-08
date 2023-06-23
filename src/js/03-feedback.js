@@ -4,7 +4,7 @@ let formData = JSON.parse(localStorage.getItem("feedback-form-state")) || {};
 
 formEl.addEventListener('input', throttle(handleWriteReport, 500));
 function handleWriteReport(e) {
-    formData[e.target.name] = e.target.value;
+    formData[e.target.name] = e.target.value.trim();
     localStorage.setItem("feedback-form-state", JSON.stringify(formData));
 }; 
 
